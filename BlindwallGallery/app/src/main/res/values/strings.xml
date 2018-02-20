@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BlindwallGallery</string>
+    <string name="materiaal_text">Materiaal:</string>
+    <string name="adres_text">Adres:</string>
+</resources>
