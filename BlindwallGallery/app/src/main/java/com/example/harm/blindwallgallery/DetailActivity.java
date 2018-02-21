@@ -3,8 +3,11 @@ package com.example.harm.blindwallgallery;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static android.content.ContentValues.TAG;
 
 public class DetailActivity extends Activity {
 
@@ -45,6 +48,7 @@ public class DetailActivity extends Activity {
 
         imageUrl = findViewById(R.id.picture_id);
         new ImageLoader(imageUrl).execute(bl.getImageURL());
+        Log.i(TAG, "Waarden gezet op detailscherm");
 
     }
 }

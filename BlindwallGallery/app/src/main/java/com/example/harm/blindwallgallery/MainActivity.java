@@ -2,6 +2,7 @@ package com.example.harm.blindwallgallery;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends Activity implements BlindwallListener {
 
@@ -25,7 +28,9 @@ public class MainActivity extends Activity implements BlindwallListener {
         setContentView(R.layout.activity_main);
 
         galaryItems = new ArrayList<>();
-        galaryItems.add(new Blindwall("Banaan", "d", "d", "d", "d", "d", 5));
+        //galaryItems.add(new Blindwall("Banaan", "d", "d", "d", "d", "d", 5));
+        Log.i(TAG,"ArrayList gemaakt");
+
         listView = findViewById(R.id.listView_id);
 
         lvAdapter = new ArrayAdapter<Blindwall>(this,
@@ -41,6 +46,7 @@ public class MainActivity extends Activity implements BlindwallListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                 intent.putExtra("BLINDITEM", galaryItems.get(i));
+                Log.i(TAG, "Detailscherm berijkt");
                 startActivity(intent);
             }
         });
@@ -50,11 +56,12 @@ public class MainActivity extends Activity implements BlindwallListener {
         BlindwallAsyncTask task = new BlindwallAsyncTask(this);
         String[] urls = new String[]{"https://api.blindwalls.gallery/apiv2/murals"};
         task.execute(urls);
+        Log.i(TAG, "Connectie met api gelegt");
     }
 
     public void onBlindwallAvailable(Blindwall blindwall){
         galaryItems.add(blindwall);
-        Log.d("1UI","runUI");
+        Log.d(TAG,"runUI");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
